@@ -26,5 +26,21 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/freelancer-register/freelancer-register.page').then(m => m.FreelancerRegisterPage)
       }
     ]
+  },
+  {
+    path: 'freelancer-dashboard',
+    loadComponent: () => import('./pages/freelancer-dashboard/freelancer-dashboard.page').then( m => m.FreelancerDashboardPage)
+  },
+  {
+    path: 'freelancer-profile',
+    loadComponent: () => import('./pages/freelancer-profile/freelancer-profile.page').then( m => m.FreelancerProfilePage)
+  },
+  {
+    path: 'freelancer-dashboard',
+    loadComponent: () => import('./pages/freelancer-dashboard/freelancer-dashboard.page').then(m => m.FreelancerDashboardPage)
+  },
+  {
+    path: 'freelancer-profile',
+    loadComponent: () => import('./pages/freelancer-profile/freelancer-profile.page').then(m => m.FreelancerProfilePage)
   }
 ];
