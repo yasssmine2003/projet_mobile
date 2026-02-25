@@ -42,5 +42,13 @@ export const routes: Routes = [
   {
     path: 'freelancer-profile',
     loadComponent: () => import('./pages/freelancer-profile/freelancer-profile.page').then(m => m.FreelancerProfilePage)
+  },
+  {
+    path: 'my-gigs',
+    loadComponent: () => import('./pages/my-gigs/my-gigs.page').then( m => m.MyGigsPage)
+  },
+  {
+    path: 'gig-details',
+    loadComponent: () => import('./pages/gig-details/gig-details.page').then( m => m.GigDetailsPage)
   }
 ];
