@@ -5,6 +5,7 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'full'
+    
   },
   {
     path: 'welcome',
@@ -26,5 +27,31 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/freelancer-register/freelancer-register.page').then(m => m.FreelancerRegisterPage)
       }
     ]
+  },
+  {
+    path: 'freelancer-dashboard',
+    loadComponent: () => import('./pages/freelancer-dashboard/freelancer-dashboard.page').then( m => m.FreelancerDashboardPage)
+  },
+  {
+    path: 'freelancer-profile',
+    loadComponent: () => import('./pages/freelancer-profile/freelancer-profile.page').then( m => m.FreelancerProfilePage)
+  },
+  {
+    path: 'freelancer-dashboard',
+    loadComponent: () => import('./pages/freelancer-dashboard/freelancer-dashboard.page').then(m => m.FreelancerDashboardPage)
+  },
+  {
+    path: 'freelancer-profile',
+    loadComponent: () => import('./pages/freelancer-profile/freelancer-profile.page').then(m => m.FreelancerProfilePage)
+  },
+  {
+    path: 'client-dashboard',
+    loadComponent: () => import('./pages/client-dashboard/client-dashboard.page').then( m => m.ClientDashboardPage)
+  },
+  {
+    path: 'talent',
+    loadComponent: () => import('./pages/talent/talent.page').then( m => m.TalentPage)
   }
+
+
 ];

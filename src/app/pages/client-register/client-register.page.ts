@@ -113,7 +113,7 @@ export class ClientRegisterPage implements OnInit {
         this.isLoading = false;
         console.log('Registration successful', this.registerForm.value);
         // Navigate to success or dashboard
-        // this.navCtrl.navigateRoot(['/dashboard']);
+        this.navCtrl.navigateRoot(['/clientdashboard']);
       }, 2000);
     } else {
       Object.keys(this.registerForm.controls).forEach(key => {

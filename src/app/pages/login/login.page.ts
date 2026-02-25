@@ -64,7 +64,7 @@ export class LoginPage implements OnInit {
         this.isLoading = false;
         console.log('Login successful', this.loginForm.value);
         // Navigate to dashboard
-        // this.navCtrl.navigateForward(['/dashboard']);
+        this.navCtrl.navigateForward(['/client-dashboard']);
       }, 2000);
     } else {
       Object.keys(this.loginForm.controls).forEach(key => {
@@ -80,6 +80,7 @@ export class LoginPage implements OnInit {
   navigateToRegister() {
     this.navCtrl.navigateForward(['/auth/client-register']);  // ← navigateForward
   }
+ 
 
   navigateToForgotPassword() {
     console.log('Navigate to forgot password');
