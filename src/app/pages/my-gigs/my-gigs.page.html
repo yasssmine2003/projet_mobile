@@ -5,120 +5,78 @@
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Gig Details</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="editGig()">
-        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>My Gigs</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="gig-details-page">
-  <div class="details-container safe-area-bottom">
+<ion-content [fullscreen]="true" class="gigs-page">
+  <div class="gigs-container safe-area-bottom">
     
     <!-- Header Card -->
-    <div class="header-card" [style.border-top]="'4px solid ' + gig.colorAccent" @fadeInUp>
-      <h1 class="gig-title">{{ gig.title }}</h1>
-      
-      <div class="gig-meta">
-        <div class="meta-item">
-          <ion-icon name="pricetag-outline"></ion-icon>
-          <span>{{ gig.category }}</span>
-        </div>
-        <div class="meta-item status-badge" [attr.data-status]="gig.status">
-          <ion-icon [name]="getStatusIcon(gig.status)"></ion-icon>
-          <span>{{ getStatusLabel(gig.status) }}</span>
-        </div>
+    <div class="header-card" @fadeInUp>
+      <div class="header-content">
+        <h1 class="page-title">My Gigs</h1>
+        <p class="page-subtitle">Manage your services</p>
       </div>
-
-      <div class="price-info">
-        <div class="price-main">
-          <span class="price-label">Starting at</span>
-          <span class="price-value">${{ gig.price }}</span>
-        </div>
-        <div class="delivery-time">
-          <ion-icon name="time-outline"></ion-icon>
-          <span>{{ gig.deliveryTime }} delivery</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats Section -->
-    <div class="stats-section" @fadeInUp>
-      <div class="stat-card">
-        <div class="stat-icon success">
-          <ion-icon name="checkmark-done-outline"></ion-icon>
-        </div>
-        <div class="stat-info">
-          <div class="stat-value">{{ gig.ordersCompleted }}</div>
-          <div class="stat-label">Orders Completed</div>
-        </div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-icon primary">
-          <ion-icon name="refresh-outline"></ion-icon>
-        </div>
-        <div class="stat-info">
-          <div class="stat-value">{{ gig.revisions }}</div>
-          <div class="stat-label">Revisions</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Description Section -->
-    <div class="section-card" @fadeInUp>
-      <h2 class="section-title">Description</h2>
-      <p class="description-text">{{ gig.description }}</p>
-    </div>
-
-    <!-- Requirements Section -->
-    <div class="section-card" *ngIf="gig.requirements" @fadeInUp>
-      <h2 class="section-title">Requirements</h2>
-      <p class="description-text">{{ gig.requirements }}</p>
-    </div>
-
-    <!-- Recent Orders Section -->
-    <div class="section-card" @fadeInUp>
-      <h2 class="section-title">Recent Orders</h2>
-      
-      <div class="orders-list" *ngIf="recentOrders.length > 0">
-        <div class="order-item" *ngFor="let order of recentOrders" (click)="viewOrder(order)">
-          <div class="order-avatar">
-            <ion-icon name="person-circle-outline"></ion-icon>
-          </div>
-          <div class="order-info">
-            <div class="order-client">{{ order.clientName }}</div>
-            <div class="order-date">{{ order.orderDate }}</div>
-          </div>
-          <div class="order-status">
-            <ion-badge [color]="getOrderStatusColor(order.status)">
-              {{ order.status }}
-            </ion-badge>
-          </div>
-        </div>
-      </div>
-      
-      <div class="empty-orders" *ngIf="recentOrders.length === 0">
-        <ion-icon name="receipt-outline"></ion-icon>
-        <p>No orders yet</p>
-      </div>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="action-buttons" @fadeInUp>
-      <ion-button 
-        expand="block" 
-        [color]="gig.status === 'active' ? 'warning' : 'success'"
-        (click)="gig.status === 'active' ? pauseGig() : activateGig()">
-        <ion-icon slot="start" [name]="gig.status === 'active' ? 'pause' : 'play'"></ion-icon>
-        {{ gig.status === 'active' ? 'Pause Gig' : 'Activate Gig' }}
+      <ion-button class="header-icon-btn" fill="clear">
+        <ion-icon slot="icon-only" name="briefcase-outline"></ion-icon>
       </ion-button>
-      
-      <ion-button expand="block" color="danger" fill="outline" (click)="deleteGig()">
-        <ion-icon slot="start" name="trash-outline"></ion-icon>
-        Delete Gig
+    </div>
+
+    <!-- Create New Gig Button -->
+    <div class="create-gig-btn" (click)="createNewGig()" @fadeInUp>
+      <div class="create-icon">
+        <ion-icon name="add-circle"></ion-icon>
+      </div>
+      <span class="create-text">Create New Gig</span>
+    </div>
+
+    <!-- Gigs List -->
+    <div class="gigs-list">
+      <div 
+        class="gig-card" 
+        *ngFor="let gig of gigs; let i = index" 
+        (click)="viewGigDetails(gig)"
+        [style.animation-delay]="(i * 0.1) + 's'"
+        @fadeInUp>
+        
+        <!-- Color Accent Bar -->
+        <div class="gig-accent" [style.background]="gig.colorAccent"></div>
+        
+        <!-- Gig Content -->
+        <div class="gig-content">
+          <h3 class="gig-title">{{ gig.title }}</h3>
+          
+          <div class="gig-info">
+            <div class="gig-price">
+              <ion-icon name="cash-outline"></ion-icon>
+              <span>${{ gig.price }}</span>
+            </div>
+            
+            <div class="gig-status" [attr.data-status]="gig.status">
+              <ion-icon [name]="getStatusIcon(gig.status)"></ion-icon>
+              <span>{{ getStatusLabel(gig.status) }}</span>
+            </div>
+          </div>
+          
+          <div class="gig-footer">
+            <span class="orders-count">{{ gig.ordersCompleted }} orders completed</span>
+            <div class="view-details-link">
+              <span>View Details</span>
+              <ion-icon name="arrow-forward"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State (if no gigs) -->
+    <div class="empty-state" *ngIf="gigs.length === 0">
+      <ion-icon name="briefcase-outline"></ion-icon>
+      <h3>No Gigs Yet</h3>
+      <p>Create your first gig to start getting orders</p>
+      <ion-button (click)="createNewGig()">
+        Create Gig
       </ion-button>
     </div>
 
