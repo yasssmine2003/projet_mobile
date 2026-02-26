@@ -26,5 +26,11 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/freelancer-register/freelancer-register.page').then(m => m.FreelancerRegisterPage)
       }
     ]
+  },
+  {
+    path: 'post-job',
+    loadComponent: () => import('./pages/pages/post-job/post-job.page').then( m => m.PostJobPage)
   }
+  
+
 ];
