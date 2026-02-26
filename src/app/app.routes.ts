@@ -30,7 +30,11 @@ export const routes: Routes = [
   {
     path: 'post-job',
     loadComponent: () => import('./pages/pages/post-job/post-job.page').then( m => m.PostJobPage)
+  },  {
+    path: 'accueil',
+    loadComponent: () => import('./pages/accueil/accueil.page').then( m => m.AccueilPage)
   }
+
   
 
 ];
