@@ -45,12 +45,22 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/freelancer-profile/freelancer-profile.page').then(m => m.FreelancerProfilePage)
   },
   {
+
     path: 'client-dashboard',
     loadComponent: () => import('./pages/client-dashboard/client-dashboard.page').then( m => m.ClientDashboardPage)
   },
   {
     path: 'talent',
     loadComponent: () => import('./pages/talent/talent.page').then( m => m.TalentPage)
+  },
+  {
+    path: 'my-gigs',
+    loadComponent: () => import('./pages/my-gigs/my-gigs.page').then( m => m.MyGigsPage)
+  },
+  {
+    path: 'gig-details',
+    loadComponent: () => import('./pages/gig-details/gig-details.page').then( m => m.GigDetailsPage)
+
   }
 
 
