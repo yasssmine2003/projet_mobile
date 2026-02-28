@@ -15,6 +15,7 @@ export const routes: Routes = [
     path: 'auth',
     children: [
       {
+        
         path: 'login',
         loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
       },
