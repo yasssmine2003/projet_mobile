@@ -1,3 +1,4 @@
+import { WelcomePage } from './../welcome/welcome.page';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, NavController } from '@ionic/angular';
@@ -42,11 +43,11 @@ export class AccueilPage {
   }
 
   goToSignIn() {
-    this.router.navigate(['/signin']);
+    this.router.navigate(['/login']);
   }
 
   goToSignUp() {
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/welcome']);
   }
 
   goToFindWork() {

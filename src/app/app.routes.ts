@@ -3,10 +3,11 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome',
+    redirectTo: 'accueil',
     pathMatch: 'full'
     
   },
+  
   {
     path: 'welcome',
     loadComponent: () => import('./pages/welcome/welcome.page').then(m => m.WelcomePage)
@@ -15,7 +16,7 @@ export const routes: Routes = [
     path: 'auth',
     children: [
       {
-        
+
         path: 'login',
         loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
       },
@@ -62,7 +63,15 @@ export const routes: Routes = [
     path: 'gig-details',
     loadComponent: () => import('./pages/gig-details/gig-details.page').then( m => m.GigDetailsPage)
 
-  }
+  },
+  {
+    path: 'post-job', 
+    loadComponent: () => import("./pages/pages/post-job/post-job.page").then( m=> m.PostJobPage)
 
+  },
+  {
+    path: 'accueil', 
+    loadComponent: () => import("./pages/accueil/accueil.page").then( m=> m.AccueilPage)
+  }
 
 ];
